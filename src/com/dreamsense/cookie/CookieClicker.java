@@ -273,7 +273,6 @@ public class CookieClicker extends JFrame {
   
   static class StatusBar extends JLabel {
     
-    /** Creates a new instance of StatusBar */
     public StatusBar() {
       super();
       super.setPreferredSize(new Dimension(100, 16));
