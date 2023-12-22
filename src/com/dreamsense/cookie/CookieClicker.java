@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * Created by kegg on 6/29/20 at 5:37 PM.
+ * Created by Kyle Eggleston on 6/29/20 at 5:37 PM.
  * Project: CookieClicker
  */
 public class CookieClicker extends JFrame {
@@ -67,7 +67,7 @@ public class CookieClicker extends JFrame {
         "Much Amaze",
         "Much Great",
         "Such Drift",
-        "Very Leeder",
+        "Very Leader",
         "Much Infinity",
         "Amaze Cookie"
       };
