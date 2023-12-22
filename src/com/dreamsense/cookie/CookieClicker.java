@@ -69,6 +69,7 @@ public class CookieClicker extends JFrame {
     });
     
     setLayout(new BorderLayout());
+    setIconImage(icon.getImage());
     
     JPanel counterPanel = new JPanel();
     counterPanel.add(counter);
