@@ -1,17 +1,7 @@
 package com.dreamsense.cookie;
 
 import javax.imageio.ImageIO;
-import javax.swing.Box;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.Timer;
+import javax.swing.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -52,6 +42,7 @@ public class CookieClicker extends JFrame {
     statusBar = new StatusBar();
     JButton cookie = new JButton();
     cookie.setBorderPainted(false);
+    cookie.setFocusPainted(false);
     counter = new JLabel("0");
     counter.setFont(new Font("Helvetica", Font.BOLD, 18));
     counter.setForeground(Color.blue);
@@ -95,6 +86,7 @@ public class CookieClicker extends JFrame {
     
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     pack();
+    setLocationRelativeTo(null);
   }
 
   private ImageIcon getIcon(String image) {
@@ -135,8 +127,8 @@ public class CookieClicker extends JFrame {
     howToPlayMenuItem.addActionListener(e ->
         JOptionPane.showMessageDialog(this,
             "You click the cookie. Isn't that " +
-                "obvious enough? I mean, it's called " +
-                "Cookie Clicker for a reason,so click the " +
+                "obvious enough?\nI mean, it's called " +
+                "Cookie Clicker for a reason,\nso click the " +
                 "cookie...",
                 "How To Play",
             JOptionPane.PLAIN_MESSAGE));
@@ -171,7 +163,6 @@ public class CookieClicker extends JFrame {
   private JPanel createStatusPanel() {
     JPanel panel = new JPanel();
     panel.setLayout(new GridLayout(4,1));
-
 
     autoClickerLabel = new JLabel("Auto Clicker (0)");
     autoClickerLabel.setIcon(getIcon("auto"));
@@ -281,7 +272,13 @@ public class CookieClicker extends JFrame {
   }
   
   public static void main(String[] args) {
-    CookieClicker cc = new CookieClicker();
+    try {
+      UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+             UnsupportedLookAndFeelException e) {
+      e.printStackTrace();
+    }
+      CookieClicker cc = new CookieClicker();
     cc.init();
     cc.setVisible(true);
   }
