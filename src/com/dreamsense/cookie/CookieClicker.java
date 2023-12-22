@@ -56,13 +56,7 @@ public class CookieClicker extends JFrame {
     counter.setFont(new Font("Helvetica", Font.BOLD, 18));
     counter.setForeground(Color.blue);
     
-    InputStream stream = getClass().getResourceAsStream("/resources/cookie.png");
-    ImageIcon icon = null;
-    try {
-      icon = new ImageIcon(ImageIO.read(stream));
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    ImageIcon icon = getIcon("cookie");
     cookie.setIcon(icon);
     cookie.addActionListener(e -> {
       incrementClicker();
@@ -101,6 +95,17 @@ public class CookieClicker extends JFrame {
     
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     pack();
+  }
+
+  private ImageIcon getIcon(String image) {
+    InputStream stream = getClass().getResourceAsStream(String.format("/resources/%s.png", image));
+    ImageIcon icon = null;
+    try {
+      icon = new ImageIcon(ImageIO.read(stream));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return icon;
   }
   
   public int getRandomNumber(int min, int max) {
@@ -161,14 +166,19 @@ public class CookieClicker extends JFrame {
   private JPanel createStatusPanel() {
     JPanel panel = new JPanel();
     panel.setLayout(new GridLayout(4,1));
-    
+
+
     autoClickerLabel = new JLabel("Auto Clicker (0)");
+    autoClickerLabel.setIcon(getIcon("auto"));
     panel.add(autoClickerLabel);
     grandmaClickerLabel = new JLabel("Grandma Clicker (0)");
+    grandmaClickerLabel.setIcon(getIcon("grandma"));
     panel.add(grandmaClickerLabel);
     factoryClickerLabel = new JLabel("Factory Clicker (0)");
+    factoryClickerLabel.setIcon(getIcon("factory"));
     panel.add(factoryClickerLabel);
     farmClickerLabel = new JLabel("Farm Clicker (0)");
+    farmClickerLabel.setIcon(getIcon("farm"));
     panel.add(farmClickerLabel);
     
     JPanel mainStatusPanel = new JPanel();
