@@ -98,10 +98,10 @@ public class CookieClicker extends JFrame {
   }
 
   private ImageIcon getIcon(String image) {
-    InputStream stream = getClass().getResourceAsStream(String.format("/resources/%s.png", image));
     ImageIcon icon = null;
-    try {
-      icon = new ImageIcon(ImageIO.read(stream));
+    try (InputStream stream = getClass().getResourceAsStream(String.format("/resources/%s.png", image))){
+        assert stream != null;
+        icon = new ImageIcon(ImageIO.read(stream));
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -114,24 +114,9 @@ public class CookieClicker extends JFrame {
   
   private JMenuBar createJMenuBar() {
     JMenuBar menuBar = new JMenuBar();
-    
-    JMenu fileMenu = new JMenu("File");
-    fileMenu.setMnemonic(KeyEvent.VK_F);
-    JMenuItem quitMenuItem = new JMenuItem("Quit");
-    quitMenuItem.setMnemonic(KeyEvent.VK_Q);
-    quitMenuItem.addActionListener(e -> System.exit(0));
-    
-    JMenuItem totalMenuItem = new JMenuItem("Total Clicks");
-    totalMenuItem.setMnemonic(KeyEvent.VK_C);
-    totalMenuItem.addActionListener(e ->
-        JOptionPane.showMessageDialog(this,
-            "Total Clicks: " + totalClicks,
-            "Cookie Clicker",
-            JOptionPane.PLAIN_MESSAGE));
-    
-    fileMenu.add(totalMenuItem);
-    fileMenu.add(quitMenuItem);
-    
+
+    JMenu fileMenu = getFileMenu();
+
     menuBar.add(fileMenu);
     menuBar.add(Box.createHorizontalGlue());
     
@@ -150,8 +135,8 @@ public class CookieClicker extends JFrame {
     howToPlayMenuItem.addActionListener(e ->
         JOptionPane.showMessageDialog(this,
             "You click the cookie. Isn't that " +
-                "obvious enough?\nI mean, it's called " +
-                "Cookie Clicker for a reason,\nso click the " +
+                "obvious enough? I mean, it's called " +
+                "Cookie Clicker for a reason,so click the " +
                 "cookie...",
                 "How To Play",
             JOptionPane.PLAIN_MESSAGE));
@@ -162,7 +147,27 @@ public class CookieClicker extends JFrame {
     
     return menuBar;
   }
-  
+
+  private JMenu getFileMenu() {
+    JMenu fileMenu = new JMenu("File");
+    fileMenu.setMnemonic(KeyEvent.VK_F);
+    JMenuItem quitMenuItem = new JMenuItem("Quit");
+    quitMenuItem.setMnemonic(KeyEvent.VK_Q);
+    quitMenuItem.addActionListener(e -> System.exit(0));
+
+    JMenuItem totalMenuItem = new JMenuItem("Total Clicks");
+    totalMenuItem.setMnemonic(KeyEvent.VK_C);
+    totalMenuItem.addActionListener(e ->
+        JOptionPane.showMessageDialog(this,
+            "Total Clicks: " + totalClicks,
+            "Cookie Clicker",
+            JOptionPane.PLAIN_MESSAGE));
+
+    fileMenu.add(totalMenuItem);
+    fileMenu.add(quitMenuItem);
+    return fileMenu;
+  }
+
   private JPanel createStatusPanel() {
     JPanel panel = new JPanel();
     panel.setLayout(new GridLayout(4,1));
