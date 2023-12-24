@@ -127,10 +127,10 @@ public class CookieClicker extends JFrame {
     howToPlayMenuItem.setMnemonic(KeyEvent.VK_P);
     howToPlayMenuItem.addActionListener(e ->
         JOptionPane.showMessageDialog(this,
-            "You click the cookie. Isn't that " +
-                "obvious enough?\nI mean, it's called " +
-                "Cookie Clicker for a reason,\nso click the " +
-                "cookie...",
+                """
+                        You click the cookie. Isn't that obvious enough?
+                        I mean, it's called Cookie Clicker for a reason,
+                        so click the cookie...""",
                 "How To Play",
             JOptionPane.PLAIN_MESSAGE));
     
