@@ -10,6 +10,8 @@ import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by Kyle Eggleston on 6/29/20 at 5:37 PM.
@@ -17,6 +19,7 @@ import java.io.InputStream;
  */
 public class CookieClicker extends JFrame {
 
+    private static final Logger logger = Logger.getLogger(CookieClicker.class.getName());
     private StatusBar statusBar;
     private JButton clickerButton;
     private JButton grandmaButton;
@@ -96,7 +99,7 @@ public class CookieClicker extends JFrame {
             assert stream != null;
             icon = new ImageIcon(ImageIO.read(stream));
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Couldn't retrieve image: " + image, e);
         }
         return icon;
     }
@@ -282,7 +285,7 @@ public class CookieClicker extends JFrame {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
                  UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Couldn't set UI", e);
         }
         CookieClicker cc = new CookieClicker();
         cc.init();
