@@ -123,6 +123,16 @@ public class CookieClicker extends JFrame {
                         "About Cookie Clicker",
                         JOptionPane.PLAIN_MESSAGE));
 
+        JMenuItem howToPlayMenuItem = getHowToPlayMenuItem();
+
+        helpMenu.add(aboutMenuItem);
+        helpMenu.add(howToPlayMenuItem);
+        menuBar.add(helpMenu);
+
+        return menuBar;
+    }
+
+    private JMenuItem getHowToPlayMenuItem() {
         JMenuItem howToPlayMenuItem = new JMenuItem("How To Play");
         howToPlayMenuItem.setMnemonic(KeyEvent.VK_P);
         howToPlayMenuItem.addActionListener(e ->
@@ -133,12 +143,7 @@ public class CookieClicker extends JFrame {
                                 so click the cookie...""",
                         "How To Play",
                         JOptionPane.PLAIN_MESSAGE));
-
-        helpMenu.add(aboutMenuItem);
-        helpMenu.add(howToPlayMenuItem);
-        menuBar.add(helpMenu);
-
-        return menuBar;
+        return howToPlayMenuItem;
     }
 
     private JMenu getFileMenu() {
